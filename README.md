@@ -26,9 +26,15 @@
 
 #### `roslaunch smb_gazebo smb_gazebo.launch` 
 
+![Image](https://github.com/Elmootez-Belleh/ROS-SMB/blob/main/screens/rostopicList.png]
+
+#### Ensuite, ouvrir un vouveau terminal et tapper les commandes suivantes : 
+
+#### `rosnode list`
+![Image](screens/rosnodeList.png)
+#### `rostopic list`
 ![Image](screens/rostopicList.png)
-        
-#### ``
-
-
-         
+#### `rostopic echo clock`
+![Image](screens/rostopicEcho.png)
+#### `rostopic hz clock`
+![Image](screens/rostopicHz.png)        
