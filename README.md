@@ -70,3 +70,19 @@
 ###### `source ~/catkin_ws/devel/setup.bash`
 ###### `roslaunch smb_gazebo different_world.launch`
 ![Image](screens/different_world.png)
+
+
+
+----------
+
+# Evaluation : 
+
+#### 1 - Vérifiez si le package teleop_twist_keyboard est compilé à partir de la source (roscd teleop_twist_keyboard devrait afficher le dossier smb_ws).
+
+###### `roscd teleop_twist_keyboard`
+![Image](screens/roscd.png)
+#### 2 - Lancer le launch file. Cela devrait mettre en place tout ce qui est nécessaire pour contrôler SMB avec le clavier 
+###### `roslaunch smb_gazebo different_world.launch`
+![Image](screens/roscdLaunch.png)
+###### `rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
+![Image](screens/roscdTeleop.png)
