@@ -12,7 +12,7 @@
 ## 🛠️ Installations
        
 
-#### 1 - Dans un premier temps il faut telecharger le fichier [smb_common.zip](url)
+#### 1 - Dans un premier temps il faut telecharger le fichier [smb_common.zip](smb_common.zip)
 #### 2 - Se positionner dans le workspace : `cd ~/catkin_ws/src`
 #### 3 - `unzip smb_common.zip`
 #### 4 - `cd ..`
