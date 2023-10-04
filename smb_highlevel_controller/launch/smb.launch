@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="world_name" default="/usr/share/gazebo-11/worlds/robocup14_spl_field.world"/>
+  <arg name="laser_enabled" default="true"/>
+  <arg name="kinect_enabled" default="false"/>
+
+  <include file="$(find smb_gazebo)/launch/smb_gazebo_empty.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+  </include>
+
+  <node name="teleop_key" pkg="teleop_twist_keyboard" 
+    type="teleop_twist_keyboard.py" />
+
+  <node name="smb_hl_ctrl" pkg="smb_highlevel_controller"
+    type="smb_highlevel_controller_node" output="screen" >
+    <rosparam  command="load"
+      file="$(find smb_highlevel_controller)/config/default.yaml" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find smb_highlevel_controller)/rviz/smb_laser.rviz" output="screen" />
+
+</launch>
