@@ -1,6 +1,6 @@
 # Exercice 1 : 
 
-#### Voici les notions que nous allons voir ensemble dans cette exercice : 
+#### Voici les notions que nous allons voir ensemble dans cet exercice : 
 
 - ROS architecture
 - ROS master, nodes, and topics
@@ -23,6 +23,8 @@
 ## 🧐 Simulation 
 
 #### Nous allons lancer notre simulation avec roslaunch :
+
+
 
 #### `roslaunch smb_gazebo smb_gazebo.launch` 
 
@@ -86,3 +88,74 @@
 ![Image](screens/roscdLaunch.png)
 ###### `rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
 ![Image](screens/roscdTeleop.png)
+
+----------
+
+
+# Exercice 2 : 
+
+
+#### Voici les notions que nous allons voir ensemble dans cet exercice : 
+
+- ROS package structure
+- Integration and programming with Eclipse
+- ROS C++ client library (roscpp)
+- ROS subscribers and publishers
+- ROS parameter server
+- RViz visualization
+
+##### 1 - Téléchargez l'archive Zip contenant les fichiers préparés du package smb_highlevel_controller à partir d' [ici](smb_highlevel_controller.zip)
+
+##### 2 -  Creer un  subscriber pour le topic `/scan`.
+`ros::Subscriber subscriber = nodeHandle.subscribe('/scan', queue_size,callback);`
+##### 3 - Callback method : 
+
+```
+void SmbHighlevelController::laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
+    auto min_elem = std::min_element(msg->ranges.cbegin(), msg->ranges.cend());
+    ROS_INFO_STREAM("La distance la plus proche est : " << *min_elem);
+}
+```
+
+##### 4 - Launch file 
+
+```
+<launch>
+  <arg name="world_name" default="/usr/share/gazebo-11/worlds/robocup14_spl_field.world"/>
+  <arg name="laser_enabled" default="true"/>
+  <arg name="kinect_enabled" default="false"/>
+
+  <include file="$(find smb_gazebo)/launch/smb_gazebo_empty.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+  </include>
+
+  <node name="teleop_key" pkg="teleop_twist_keyboard" 
+    type="teleop_twist_keyboard.py" />
+
+  <node name="smb_hl_ctrl" pkg="smb_highlevel_controller"
+    type="smb_highlevel_controller_node" output="screen" >
+    <rosparam  command="load"
+      file="$(find smb_highlevel_controller)/config/default.yaml" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find smb_highlevel_controller)/rviz/smb_laser.rviz" output="screen" />
+
+</launch>
+```
+
+ ##### 4 - RViz 
+
+`roslaunch smb_highlevel_controller smb.launch `
+ 
+![Image](screens/laser_empty.png)
+
+##### 5 - RViz, robocup14_spl_field.world 
+
+`roslaunch smb_highlevel_controller smb_controller.launch`
+
+![Image](screens/rvizLaser.png)
+
+##### 6 -  smb_highlevel_controller node
+![Image](screens/distance_node.png)
