@@ -44,6 +44,7 @@ include_directories(
 add_executable(${PROJECT_NAME}
   src/smb_highlevel_controller_node.cpp
   src/SmbHighlevelController.cpp
+  src/SmbHighlevelControllerPointCloud.cpp
 )
 
 ## Specify libraries to link a library or executable target against
