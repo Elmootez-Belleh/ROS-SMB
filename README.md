@@ -153,3 +153,21 @@ void SmbHighlevelController::laserCallback(const sensor_msgs::LaserScan::ConstPt
 ##### 5 -  smb_highlevel_controller node
 ![Image](screens/distance_node.png)
 
+#### 6 Pointcloud_to_laserscan :
+##### 6.1 - RViz
+
+Pour ajouter la fonctionnalité de nuage de points dans RViz, suivez ces étapes :
+
+1. Cliquez sur le bouton "Add" dans la barre d'outils de RViz.
+2. Dans le menu déroulant, sélectionnez "PointCloud2" pour ajouter un nuage de points.
+3. Une fois ajouté, une fenêtre de configuration apparaîtra. Dans cette fenêtre, recherchez le champ "Topic" ou "Topic Name".
+4. Entrez "/rslidar_points" dans le champ "Topic" pour spécifier le topic sur lequel les données du nuage de points sont publiées.
+
+Après avoir suivi ces étapes, RViz devrait afficher le nuage de points provenant du topic "/rslidar_points". Vous pourrez alors visualiser les données du nuage de points dans RViz.
+
+![Image](screens/pointCloud.png)
+
+##### 6.2 -  SmbHighlevelControllerPointCloud Subscriber : 
+Nous avons pour objectif de compter le nombre de points dans un nuage de points. Pour cela, nous allons créer un "subscriber" qui récupérera les informations à partir du topic "rslidar_points". Cela nous permettra ainsi de déterminer le nombre de points présents dans le nuage.
+
+![Image](screens/pointCloudNombreDePoints.png)
