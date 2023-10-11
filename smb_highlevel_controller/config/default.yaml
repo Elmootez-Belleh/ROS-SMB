@@ -1,2 +1,4 @@
-subscriber_topic: /scan
-queue_size: 10
+laser_topic: /scan
+laser_queue_size: 10
+pointcloud_topic: /rslidar_points
+pointcloud_queue_size: 10
