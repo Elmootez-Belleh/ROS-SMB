@@ -145,11 +145,11 @@ void SmbHighlevelController::laserCallback(const sensor_msgs::LaserScan::ConstPt
 </launch>
 ```
 
-##### 5 - RViz
+##### 4 - RViz
 `roslaunch smb_highlevel_controller smb_controller.launch`
 
 ![Image](screens/rvizLaser.png)
 
-##### 6 -  smb_highlevel_controller node
+##### 5 -  smb_highlevel_controller node
 ![Image](screens/distance_node.png)
 
